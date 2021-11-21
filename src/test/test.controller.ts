@@ -8,13 +8,14 @@ export class TestController {
 		private readonly testService: TestService
 	){}
 
+	@Get('/tests')
+	async showAll(): Promise<Test[]> {
+		console.log("hih");
+		return this.testService.showAll();
+	}
+
 	@Get('/:string')
 	async putString(@Param('string') userInput: string): Promise<void> {
 		this.testService.putString(userInput);
-	}
-
-	@Get('/tests')
-	async showAll(): Promise<Test[]> {
-		return this.testService.showAll();
 	}
 }
