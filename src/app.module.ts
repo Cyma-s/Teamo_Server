@@ -4,13 +4,15 @@ import { AppService } from './app.service';
 import { TestModule } from './test/test.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
 import "reflect-metadata";
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(),
     TestModule,
-    UserModule
+    UserModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],

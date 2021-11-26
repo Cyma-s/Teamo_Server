@@ -16,4 +16,9 @@ export class UserController {
 	async checkEmailValidation(@Param("userEmail") userEmail) {
 		return await this.userService.checkEmailValidation(userEmail)
 	}
+
+	@Get('/id/validation/:userId')
+	async checkIdValidation(@Param("userId") id) {
+		return await this.userService.checkIdValidation(id)
+	}
 }
