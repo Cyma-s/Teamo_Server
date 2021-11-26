@@ -37,5 +37,8 @@ lerna-debug.log*
 # ENV files
 /ormconfig.json
 
+#migration
+/src/migration
+
 # docker
 docker
