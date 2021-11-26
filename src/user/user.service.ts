@@ -15,8 +15,18 @@ export class UserService {
 			await this.userRepo.insert(u_i)
 	}
 
+	async signIn(id: string): Promise<User | undefined> {
+		return this.userRepo.findOne({id: id})
+	}
+
 	async checkEmailValidation(email:string) {
 		if(await this.userRepo.findOne({email: email}))
+			return "true"
+		return "false"
+	}
+
+	async checkIdValidation(id:string) {
+		if(await this.userRepo.findOne({id: id}))
 			return "true"
 		return "false"
 	}
