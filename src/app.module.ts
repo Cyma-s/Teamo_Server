@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { PostingModule } from './posting/posting.module';
+import { TeamModule } from './team/team.module';
 import "reflect-metadata";
 
 @Module({
@@ -14,7 +15,8 @@ import "reflect-metadata";
     TestModule,
     UserModule,
     AuthModule,
-    PostingModule
+    PostingModule,
+    TeamModule
   ],
   controllers: [AppController],
   providers: [AppService],
