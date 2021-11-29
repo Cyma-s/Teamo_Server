@@ -30,4 +30,8 @@ export class UserService {
 			return "true"
 		return "false"
 	}
+
+	async deleteOne(id:string) {
+		await this.userRepo.delete({id: id})
+	}
 }
