@@ -15,20 +15,20 @@ export class PostingController {
 	}
 
 	@UseGuards(JwtAuthGuard)
-	@Get('myPostings')
-	async getMyPostings(@Request() req) {
-		return await this.postingService.getMyPostings(req.user.userId)
+	@Get('myPostings/member/:page')
+	async getMyEnrollment(@Request() req, @Param('page') page) {
+		return await this.postingService.getMyEnrollment(req.user.userId, page)
 	}
 
-	@Get('allPostings')
-	async getAllPostings() {
-		return await this.postingService.getAllPostings()
-	}
-
-	/*
 	@UseGuards(JwtAuthGuard)
-	@Get('enrollment')
-	async getMyEnrollment(@Request() req) {
-		return await this.postingService.getMyEnrollment(req.user.userId)
-	}*/
+	@Get('myPostings/:page')
+	async getMyPostings(@Request() req, @Param('page') page) {
+		return await this.postingService.getMyPostings(req.user.userId, page)
+	}
+
+	@Get('allPostings/:page')
+	async getAllPostings(@Param('page') page) {
+		return await this.postingService.getAllPostings(page)
+	}
+
 }
