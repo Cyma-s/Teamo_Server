@@ -19,7 +19,4 @@ export class User {
 
 	@Column()
 	std_num: string;
-
-	@Column({type: 'longtext', default: null})
-	introduction: string;
 }

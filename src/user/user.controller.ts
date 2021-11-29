@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Delete } from '@nestjs/common';
 import { UserService } from './user.service';
 
 @Controller('user')
@@ -20,5 +20,10 @@ export class UserController {
 	@Get('/id/validation/:userId')
 	async checkIdValidation(@Param("userId") id) {
 		return await this.userService.checkIdValidation(id)
+	}
+
+	@Delete('/:id')
+	async deleteOne(@Param('id') id) {
+		await this.userService.deleteOne(id)
 	}
 }
