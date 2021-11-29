@@ -5,7 +5,7 @@ export class Member {
     @PrimaryColumn()
 	team_id: string
 
-    @Column()
+    @PrimaryColumn()
     member: string;
 
 	@Column()
