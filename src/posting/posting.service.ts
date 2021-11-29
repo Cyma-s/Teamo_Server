@@ -42,14 +42,6 @@ export class PostingService {
 		}
 	}
 
-	async joinToTeam(id, teamId) {
-		const member = {
-			"team_id": teamId,
-			"member": id,
-			"state": "pending"
-		}
-	}
-
 	/*
 	async getMyEnrollment(id: string) {
 

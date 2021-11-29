@@ -20,12 +20,6 @@ export class PostingController {
 		return await this.postingService.getMyPostings(req.user.userId)
 	}
 
-	@UseGuards(JwtAuthGuard)
-	@Get('request/:teamId')
-	async joinToTeam(@Request() req, @Param('teamId') teamId) {
-		await this.postingService.joinToTeam(req.user.userId, teamId)
-	}
-
 	/*
 	@UseGuards(JwtAuthGuard)
 	@Get('enrollment')
