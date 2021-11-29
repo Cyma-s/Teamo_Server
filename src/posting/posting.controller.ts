@@ -20,6 +20,11 @@ export class PostingController {
 		return await this.postingService.getMyPostings(req.user.userId)
 	}
 
+	@Get('allPostings')
+	async getAllPostings() {
+		return await this.postingService.getAllPostings()
+	}
+
 	/*
 	@UseGuards(JwtAuthGuard)
 	@Get('enrollment')

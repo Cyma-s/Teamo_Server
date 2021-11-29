@@ -42,6 +42,20 @@ export class PostingService {
 		}
 	}
 
+	async getAllPostings() {
+		const allPostings = await this.postingRepo.findAndCount({
+			order: {
+				date: 'DESC'
+			},
+			take: 20
+		})
+
+		return {
+			"postings": allPostings[0],
+			"number": allPostings[1]
+		}
+	}
+
 	/*
 	async getMyEnrollment(id: string) {
 
