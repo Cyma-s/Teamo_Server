@@ -1,4 +1,4 @@
-import { Body, Controller, Request, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Request, Post, UseGuards, Get, Param } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { PostingService } from './posting.service';
 
@@ -11,6 +11,25 @@ export class PostingController {
 	@UseGuards(JwtAuthGuard)
 	@Post()
 	async makeNewPosting(@Body() newPosting, @Request() req) {
-		await this.postingService.makeNewPosting(newPosting, req.user.id)
+		await this.postingService.makeNewPosting(newPosting, req.user.userId)
 	}
+
+	@UseGuards(JwtAuthGuard)
+	@Get('myPostings')
+	async getMyPostings(@Request() req) {
+		return await this.postingService.getMyPostings(req.user.userId)
+	}
+
+	@UseGuards(JwtAuthGuard)
+	@Get('request/:teamId')
+	async joinToTeam(@Request() req, @Param('teamId') teamId) {
+		await this.postingService.joinToTeam(req.user.userId, teamId)
+	}
+
+	/*
+	@UseGuards(JwtAuthGuard)
+	@Get('enrollment')
+	async getMyEnrollment(@Request() req) {
+		return await this.postingService.getMyEnrollment(req.user.userId)
+	}*/
 }
