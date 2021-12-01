@@ -19,7 +19,6 @@ export class PostingService {
 			"title" : n_p.title,
 			"content" : n_p.content,
 			"writer": id,
-			"writer_intro": n_p.writer_intro,
 			"member_number": n_p.member_number,
 			"subject": n_p.subject,
 			"semester": n_p.semester,
