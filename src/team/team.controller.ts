@@ -40,7 +40,7 @@ export class TeamController {
 	@UseGuards(JwtAuthGuard)
 	@Get('message/:team_id/:sender_id')
 	async getMessage(@Request() req, @Param('team_id') team_id, @Param('sender_id') sender_id) {
-		await this.teamService.getMessage(req.user.userId, team_id, sender_id)
+		return await this.teamService.getMessage(req.user.userId, team_id, sender_id)
 	}
 
 	@Delete('message/:team_id/:sender_id/:receiver_id')

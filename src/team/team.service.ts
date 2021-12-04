@@ -35,18 +35,18 @@ export class TeamService {
 		await this.memberRepo.update({"team_id": teamId, "member": id}, {"state": "reject"})
 	}
 
-	async sendMessage(id, message) {
-		console.log(message.team_id)
+	async sendMessage(message, id) {
 		const newMessage = {
 			"team_id": message.team_id,
 			"sender": id,
 			"receiver": message.receiver,
 			"content": message.content
 		}
-		await this.memberRepo.insert(newMessage)
+		await this.messageRepo.insert(newMessage)
 	}
 
 	async getMessage(id, team_id, sender_id) {
+		const message = await this.messageRepo.findOne({"team_id": team_id, "sender": sender_id, "receiver": id})
 		return await this.messageRepo.findOne({"team_id": team_id, "sender": sender_id, "receiver": id})
 	}
 
