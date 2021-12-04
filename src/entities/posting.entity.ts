@@ -8,7 +8,7 @@ export class Posting {
     @Column()
     title: string;
 
-	@Column()
+	@Column({type: 'longtext'})
     content: string;
 
 	@CreateDateColumn({type: "timestamp"})
@@ -16,9 +16,6 @@ export class Posting {
 
 	@Column()
 	writer: string;
-
-	@Column({type: 'longtext'})
-	writer_intro: string;
 
 	@Column()
 	member_number: string;

@@ -26,4 +26,11 @@ export class TeamService {
 	async reject(id, teamId) {
 		await this.memberRepo.update({"team_id": teamId, "member": id}, {"state": "reject"})
 	}
+
+	async getMembers(team_id) {
+	}
+
+	async delete(team_id, member_id) {
+		await this.memberRepo.delete({"team_id": team_id, "member": member_id})
+	}
 }

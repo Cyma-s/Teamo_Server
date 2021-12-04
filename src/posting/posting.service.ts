@@ -19,7 +19,6 @@ export class PostingService {
 			"title" : n_p.title,
 			"content" : n_p.content,
 			"writer": id,
-			"writer_intro": n_p.writer_intro,
 			"member_number": n_p.member_number,
 			"subject": n_p.subject,
 			"semester": n_p.semester,
@@ -63,7 +62,7 @@ export class PostingService {
 	}
 
 	async getMyEnrollment(id: string, page: string) {
-		const myPostingjoinedInfo = await this.memberRepo.find({"member": id, "state": "approve"})
+		const myPostingjoinedInfo = await this.memberRepo.find({"member": id})
 		let myPostingIds = myPostingjoinedInfo.map(element => element.team_id)
 
 		const allPostings = await this.postingRepo.find({
@@ -96,5 +95,9 @@ export class PostingService {
 			"postings": [],
 			"number": 0
 		}
+	}
+
+	async delete(id) {
+		await this.postingRepo.delete({'id': id})
 	}
 }
