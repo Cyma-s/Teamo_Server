@@ -62,7 +62,7 @@ export class PostingService {
 	}
 
 	async getMyEnrollment(id: string, page: string) {
-		const myPostingjoinedInfo = await this.memberRepo.find({"member": id, "state": "approve"})
+		const myPostingjoinedInfo = await this.memberRepo.find({"member": id})
 		let myPostingIds = myPostingjoinedInfo.map(element => element.team_id)
 
 		const allPostings = await this.postingRepo.find({
@@ -95,5 +95,9 @@ export class PostingService {
 			"postings": [],
 			"number": 0
 		}
+	}
+
+	async delete(id) {
+		await this.postingRepo.delete({'id': id})
 	}
 }

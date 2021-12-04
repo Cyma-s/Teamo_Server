@@ -1,4 +1,4 @@
-import { Body, Controller, Request, Post, UseGuards, Get, Param } from '@nestjs/common';
+import { Body, Controller, Request, Post, UseGuards, Get, Param, Delete } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { PostingService } from './posting.service';
 
@@ -21,7 +21,7 @@ export class PostingController {
 	}
 
 	@UseGuards(JwtAuthGuard)
-	@Get('myPostings/:page')
+	@Get('myPostings/host/:page')
 	async getMyPostings(@Request() req, @Param('page') page) {
 		return await this.postingService.getMyPostings(req.user.userId, page)
 	}
@@ -31,4 +31,8 @@ export class PostingController {
 		return await this.postingService.getAllPostings(page)
 	}
 
+	@Delete('/:id')
+	async delete(@Param('id') id) {
+		await this.postingService.delete(id)
+	}
 }

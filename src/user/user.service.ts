@@ -36,6 +36,15 @@ export class UserService {
 		return "false"
 	}
 
+	async getUserProfile(userid) {
+		const user = await this.userRepo.findOne({id: userid})
+		return await {
+			"name": user.name,
+			"department": user.department,
+			"std_num": user.std_num
+		}
+	}
+
 	async deleteOne(id:string) {
 		await this.userRepo.delete({id: id})
 	}
