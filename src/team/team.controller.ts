@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Request, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { Member } from 'src/entities/member.entity';
 import { TeamService } from './team.service';
 
 @Controller('team')
@@ -9,21 +10,19 @@ export class TeamController {
 	){}
 
 	@UseGuards(JwtAuthGuard)
-	@Get('request/:teamId')
+	@Get('/request/:teamId')
 	async joinToTeam(@Request() req, @Param('teamId') teamId) {
 		await this.teamService.joinToTeam(req.user.userId, teamId)
 	}
 
-	@UseGuards(JwtAuthGuard)
-	@Get('approval/:teamId')
-	async approve(@Request() req, @Param('teamId') teamId) {
-		await this.teamService.approve(req.user.userId, teamId)
+	@Get('/approval/:teamId/:member')
+	async approve(@Param('member') member, @Param('teamId') teamId) {
+		await this.teamService.approve(member, teamId)
 	}
 
-	@UseGuards(JwtAuthGuard)
-	@Get('rejection/:teamId')
-	async reject(@Request() req, @Param('teamId') teamId) {
-		await this.teamService.reject(req.user.userId, teamId)
+	@Get('/rejection/:teamId/:member')
+	async reject(@Param() member, @Param('teamId') teamId) {
+		await this.teamService.reject(member, teamId)
 	}
 
 	@Get('/member/:team_id')
