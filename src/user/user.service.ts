@@ -16,8 +16,8 @@ export class UserService {
 			const salt = await bcrypt.genSalt();
 			const hash = await bcrypt.hash(u_i.password, salt);
 			u_i.password = hash
-		}
 			await this.userRepo.insert(u_i)
+		}
 	}
 
 	async signIn(id: string): Promise<User | undefined> {

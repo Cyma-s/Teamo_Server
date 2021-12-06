@@ -10,7 +10,7 @@ export class UserController {
 
 	@Post()
 	async signUp(@Body() userInfo) {
-		await this.userService.signUp(userInfo)
+		return await this.userService.signUp(userInfo)
 	}
 
 	@Get('/email/validation/:userEmail')
@@ -23,13 +23,13 @@ export class UserController {
 		return await this.userService.checkIdValidation(id)
 	}
 
-	@Get('profile/:userid')
+	@Get('/profile/:userid')
 	async getUserProfile(@Param('userid') userid) {
 	  return await this.userService.getUserProfile(userid)
 	}
 	
 	@UseGuards(JwtAuthGuard)
-	@Get('profile')
+	@Get('/profile')
 	async getMyProfile(@Request() req) {
 		return await this.userService.getUserProfile(req.user.userId)
 	}
